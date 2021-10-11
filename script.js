@@ -1,3 +1,22 @@
+const timeEle = document.getElementById('time');
+const dateEle = document.getElementById('date');
+const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+setInterval(() => {
+    const time = new Date();
+    const month = time.getMonth();
+    const date = time.getDate();
+    const day = time.getDay();
+    const hour = time.getHours();
+    const hoursIn12Hr = hour >= 13 ? hour %12: hour
+    const minutes = time.getMinutes();
+    const ampm = hour >= 12 ? 'PM' : 'AM'
+
+    timeEle.innerHTML = hoursIn12Hr + ':' + minutes +`<span id="am-pm">${ampm}</span>`
+
+    dateEle.innerHTML = days[day] + ' , ' + date + ' ' + months[month]
+}, 1000);
+
 let weather = {
     apiKey: "aa396d4f90dd8de76da607b44f704148",
     fetchWeather: function (city) {
@@ -14,6 +33,7 @@ let weather = {
         const { icon, description } = data.weather[0];
         const { temp, humidity } = data.main;
         const { speed } = data.wind;
+
         document.querySelector(".city").innerText = name;
         document.querySelector(".icon").src = 
         "https://openweathermap.org/img/wn/" + icon + ".png";
@@ -29,7 +49,7 @@ let weather = {
             description == "overcast clouds" || 
             description == "scattered clouds" || 
             description == "few clouds") {
-            document.body.style.backgroundImage = "url('https://64.media.tumblr.com/1dcbe5bf004e9f3552d1619a1fcba998/tumblr_pusx2x7Uxx1tfvddlo1_540.gifv')"
+            document.body.style.backgroundImage = "url('https://img.wattpad.com/10cb42553f9af4cbe06150823c625368dbcb7af1/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f3151484b54696a677462595336513d3d2d3737333938393538352e313562633430643837356263343434363338373033343738323631372e676966')"
         }    
             else if (description == "mist"){
             document.body.style.backgroundImage = "url('https://i.pinimg.com/originals/77/42/24/77422432ef2ee5f1ffbd8828b1bca3b9.gif')"
@@ -37,7 +57,7 @@ let weather = {
             else if (description == "light rain" || 
             description == "moderate rain" ||
             description == "heavy intensity rain") {
-            document.body.style.backgroundImage = "url('https://i.pinimg.com/originals/a0/d9/79/a0d9791b631a6f5a480c9bc0f792b29a.gif')"
+            document.body.style.backgroundImage = "url('https://mendokusai.github.io/public/images/rainy_day.gif')"
         }   else {
             document.body.style.backgroundImage = "url('https://64.media.tumblr.com/c4205bb1f4230f38c8e79b49055a9c67/b4d4f2e5ea6f4d8e-78/s540x810/ad0e1259b9d0d0cf7d120c23e9a217e234b1b62a.gifv')"
         }
@@ -59,4 +79,4 @@ document.querySelector(".search-bar").addEventListener("keyup", function (event)
     }
 });
 
-weather.fetchWeather("Denver");
+weather.fetchWeather();

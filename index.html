@@ -12,11 +12,6 @@
     <script src="./script.js" defer></script>
   </head>
   <body>
-    <div class="container">
-      <div class>
-
-      </div>
-    </div>
     <div class="card">
       <div class="search">
         <input type="text" class="search-bar" placeholder="Search" />
@@ -36,6 +31,16 @@
           </svg>
         </button>
       </div>
+      <div class="container">
+        <div class="current-info">
+          <div class="time" id="time">
+            12:30 <span id="am-pm">PM</span>
+          </div>
+          <div class="date" id="date">
+            Monday, 24 May
+          </div>
+        </div>
+      </div>
       <div class="weather loading">
           <h2 class="city">Weather in Seattle</h2>
           <h1 class="temp">51°C</h1>
@@ -44,7 +49,7 @@
             <div class="description">Cloudy</div>
           </div>
           <div class="humidity">Humidity: 60%</div>
-          <div class="wind">Wind speed: 6.2 km/h</div>
+          <div class="wind">Wind speed: 6.0 km/h</div>
       </div>
     </div>
   </body>
